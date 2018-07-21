@@ -33,7 +33,10 @@ defmodule Hype.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:decimal, "~> 1.0"}
+      {:decimal, "~> 1.0"},
+      {:guardian, "~> 1.1"},
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 0.12"}
     ]
   end
 
