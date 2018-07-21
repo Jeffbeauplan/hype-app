@@ -7,5 +7,7 @@ defmodule HypeWeb.Router do
 
   scope "/api", HypeWeb do
     pipe_through :api
+
+    resources "/items", ItemController, except: [:new, :edit]
   end
 end
