@@ -9,5 +9,6 @@ defmodule HypeWeb.Router do
     pipe_through :api
 
     resources "/items", ItemController, except: [:new, :edit]
+    resources "/transactions", TransactionController, except: [:new, :edit]
   end
 end
