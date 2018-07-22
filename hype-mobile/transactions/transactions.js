@@ -1,22 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import AddTransaction from './add-transaction';
+import TransactionHome from './transaction-home';
 
-export default class Settings extends React.Component {
-  render() {
-
-    return (
-      <View style={styles.container}>
-        <Text>Transactions</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: 'black',
-      alignItems: 'center',
-      paddingTop: 20
+export default createStackNavigator(
+  {
+    TransactionHome: {screen: TransactionHome},
+    AddTransaction: {screen: AddTransaction}
   },
-});
+  {
+    initialRouteName: 'TransactionHome',
+    navigationOptions: {
+      header: null
+    }
+  }
+);

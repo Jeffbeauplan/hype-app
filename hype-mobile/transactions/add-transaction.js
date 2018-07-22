@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class Inventory extends React.Component {
+export default class AddTransaction extends React.Component {
+
   render() {
 
     return (
       <View style={styles.container}>
-        <Text>Inventory</Text>
+        <Text style={{color: 'white'}}>Add Transaction</Text>
       </View>
     );
   }
@@ -18,5 +19,5 @@ const styles = StyleSheet.create({
       backgroundColor: 'black',
       alignItems: 'center',
       paddingTop: 20
-  },
+  }
 });
