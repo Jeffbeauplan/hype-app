@@ -4,7 +4,7 @@ defmodule HypeWeb.TransactionController do
   alias Hype.Transactions
   alias Hype.Transactions.Transaction
 
-  action_fallback HypeWeb.FallbackController
+  action_fallback(HypeWeb.FallbackController)
 
   def index(conn, _params) do
     transactions = Transactions.list_transactions()
@@ -12,7 +12,8 @@ defmodule HypeWeb.TransactionController do
   end
 
   def create(conn, %{"transaction" => transaction_params}) do
-    with {:ok, %Transaction{} = transaction} <- Transactions.create_transaction(transaction_params) do
+    with {:ok, %Transaction{} = transaction} <-
+           Transactions.create_transaction(transaction_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", transaction_path(conn, :show, transaction))
@@ -28,13 +29,15 @@ defmodule HypeWeb.TransactionController do
   def update(conn, %{"id" => id, "transaction" => transaction_params}) do
     transaction = Transactions.get_transaction!(id)
 
-    with {:ok, %Transaction{} = transaction} <- Transactions.update_transaction(transaction, transaction_params) do
+    with {:ok, %Transaction{} = transaction} <-
+           Transactions.update_transaction(transaction, transaction_params) do
       render(conn, "show.json", transaction: transaction)
     end
   end
 
   def delete(conn, %{"id" => id}) do
     transaction = Transactions.get_transaction!(id)
+
     with {:ok, %Transaction{}} <- Transactions.delete_transaction(transaction) do
       send_resp(conn, :no_content, "")
     end

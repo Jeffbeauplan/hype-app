@@ -4,7 +4,7 @@ defmodule HypeWeb.ItemController do
   alias Hype.Items
   alias Hype.Items.Item
 
-  action_fallback HypeWeb.FallbackController
+  action_fallback(HypeWeb.FallbackController)
 
   def index(conn, _params) do
     items = Items.list_items()
@@ -35,6 +35,7 @@ defmodule HypeWeb.ItemController do
 
   def delete(conn, %{"id" => id}) do
     item = Items.get_item!(id)
+
     with {:ok, %Item{}} <- Items.delete_item(item) do
       send_resp(conn, :no_content, "")
     end

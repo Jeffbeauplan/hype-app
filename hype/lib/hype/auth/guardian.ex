@@ -13,5 +13,4 @@ defmodule Hype.Auth.Guardian do
       user -> {:ok, user}
     end
   end
-
 end

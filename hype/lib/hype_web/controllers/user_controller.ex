@@ -3,7 +3,7 @@ defmodule HypeWeb.UserController do
 
   alias Hype.{Auth, Accounts, Accounts.User}
 
-  action_fallback HypeWeb.FallbackController
+  action_fallback(HypeWeb.FallbackController)
 
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
@@ -15,17 +15,15 @@ defmodule HypeWeb.UserController do
   end
 
   def authenticate(conn, %{"email" => email, "password" => password}) do
-    with %User{} = user <- Accounts.get_user_by_email(email),
-         {:ok, token, _claims} <- Auth.authenticate_user(email, password) do
-      render conn, "token.json", token: token
+    with {:ok, token, _claims} <- Auth.authenticate_user(email, password) do
+      render(conn, "token.json", token: token)
     else
       _ ->
-        render conn, "token_error.json"
+        render(conn, "token_error.json")
     end
   end
 
   def index(conn, _params) do
-    render conn, "show.json", user: conn.private.guardian_default_resource
+    render(conn, "show.json", user: conn.private.guardian_default_resource)
   end
-
 end

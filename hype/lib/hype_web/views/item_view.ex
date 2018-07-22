@@ -11,9 +11,6 @@ defmodule HypeWeb.ItemView do
   end
 
   def render("item.json", %{item: item}) do
-    %{id: item.id,
-      brand: item.brand,
-      model: item.model,
-      size: item.size}
+    %{id: item.id, brand: item.brand, model: item.model, size: item.size}
   end
 end
