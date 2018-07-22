@@ -1,0 +1,35 @@
+@url = http://localhost:4000/api
+@evanToken = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJoeXBlIiwiZXhwIjoxNTM0NzA0MDE2LCJpYXQiOjE1MzIyODQ4MTYsImlzcyI6Imh5cGUiLCJqdGkiOiI2MTMzYWY3Ny0xMTk4LTRiNDItYjJiYS1iZmE0OGYwZjQ3NTEiLCJuYmYiOjE1MzIyODQ4MTUsInN1YiI6IjEiLCJ0eXAiOiJhY2Nlc3MifQ.SdgmErs1bIjmU91GLFQgo4SE3HDIS5blMMaOfol6pDIDuod77idhX2eiX3w36dU6xu_e2F_ceoWWMan1J3kJPQ
+
+
+# @name authentication
+POST {{url}}/users/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "rupertevanr@gmail.com",
+  "password": "password"
+}
+
+###
+
+# @name evan_create_transaction
+POST {{url}}/transactions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{evanToken}}
+
+{
+  "transaction": {
+    "vendor": "VendorX",
+    "purchase_date": "2018-07-20",
+    "purchase_price": 20.0,
+    "sell_date": "2018-07-22",
+    "sell_price": 30.0,
+    "payout_amount": 25.0,
+    "broker": "BrokerX",
+    "status": "SOLD",
+    "item_id": 1
+  }
+}
+
+

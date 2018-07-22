@@ -6,9 +6,9 @@ defmodule Hype.Transactions.Transaction do
   schema "transactions" do
     field :broker, :string
     field :payout_amount, :decimal
-    field :purchase_date, :utc_datetime
+    field :purchase_date, :date
     field :purchase_price, :decimal
-    field :sell_date, :utc_datetime
+    field :sell_date, :date
     field :sell_price, :decimal
     field :status, :string
     field :vendor, :string
