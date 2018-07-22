@@ -24,4 +24,8 @@ defmodule HypeWeb.UserController do
     end
   end
 
+  def index(conn, _params) do
+    render conn, "show.json", user: conn.private.guardian_default_resource
+  end
+
 end

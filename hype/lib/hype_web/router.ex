@@ -19,6 +19,7 @@ defmodule HypeWeb.Router do
   scope "/api", HypeWeb do
     pipe_through [:api, :auth]
 
+    get "/users", UserController, :index
     resources "/items", ItemController, except: [:new, :edit]
     resources "/transactions", TransactionController, except: [:new, :edit]
   end

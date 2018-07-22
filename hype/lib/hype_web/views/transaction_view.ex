@@ -15,7 +15,8 @@ defmodule HypeWeb.TransactionView do
     user = Accounts.get_user!(transaction.user_id)
     item = Items.get_item!(transaction.item_id)
 
-    %{id: transaction.id,
+    %{
+      id: transaction.id,
       vendor: transaction.vendor,
       purchase_date: transaction.purchase_date,
       purchase_price: transaction.purchase_price,
