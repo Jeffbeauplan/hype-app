@@ -7,7 +7,11 @@ defmodule HypeWeb.TransactionController do
   action_fallback(HypeWeb.FallbackController)
 
   def index(conn, _params) do
-    transactions = Transactions.list_transactions()
+    transactions =
+      conn
+      |> get_current_user_id()
+      |> Transactions.get_all_user_transactions()
+
     render(conn, "index.json", transactions: transactions)
   end
 
@@ -30,24 +34,33 @@ defmodule HypeWeb.TransactionController do
   end
 
   def show(conn, %{"id" => id}) do
-    transaction = Transactions.get_transaction!(id)
-    render(conn, "show.json", transaction: transaction)
-  end
+    user_id = get_current_user_id(conn)
 
-  def update(conn, %{"id" => id, "transaction" => transaction_params}) do
-    transaction = Transactions.get_transaction!(id)
-
-    with {:ok, %Transaction{} = transaction} <-
-           Transactions.update_transaction(transaction, transaction_params) do
+    with %Transaction{} = transaction <- Transactions.get_transaction_by_user(id, user_id) do
       render(conn, "show.json", transaction: transaction)
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    transaction = Transactions.get_transaction!(id)
+  def update(conn, %{"id" => id, "transaction" => transaction_params}) do
+    user_id = get_current_user_id(conn)
 
-    with {:ok, %Transaction{}} <- Transactions.delete_transaction(transaction) do
+    with %Transaction{} = transaction <- Transactions.get_transaction_by_user(id, user_id),
+         {:ok, %Transaction{} = new_transaction} <-
+           Transactions.update_transaction(transaction, transaction_params) do
+      render(conn, "show.json", transaction: new_transaction)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    user_id = get_current_user_id(conn)
+
+    with %Transaction{} = transaction <- Transactions.get_transaction_by_user(id, user_id),
+         {:ok, %Transaction{}} <- Transactions.delete_transaction(transaction) do
       send_resp(conn, :no_content, "")
     end
+  end
+
+  defp get_current_user_id(conn) do
+    conn.private.guardian_default_resource.id
   end
 end

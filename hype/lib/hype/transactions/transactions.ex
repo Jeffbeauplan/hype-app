@@ -14,6 +14,18 @@ defmodule Hype.Transactions do
 
   def get_transaction!(id), do: Repo.get!(Transaction, id)
 
+  def get_all_user_transactions(user_id) do
+    Transaction
+    |> where([t], t.user_id == ^user_id)
+    |> Repo.all()
+  end
+
+  def get_transaction_by_user(id, user_id) do
+    Transaction
+    |> where([t], t.user_id == ^user_id)
+    |> Repo.get(id)
+  end
+
   def create_transaction(attrs \\ %{}) do
     %Transaction{}
     |> Transaction.changeset(attrs)

@@ -1,5 +1,6 @@
 @url = http://localhost:4000/api
 @evanToken = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJoeXBlIiwiZXhwIjoxNTM0NzA0MDE2LCJpYXQiOjE1MzIyODQ4MTYsImlzcyI6Imh5cGUiLCJqdGkiOiI2MTMzYWY3Ny0xMTk4LTRiNDItYjJiYS1iZmE0OGYwZjQ3NTEiLCJuYmYiOjE1MzIyODQ4MTUsInN1YiI6IjEiLCJ0eXAiOiJhY2Nlc3MifQ.SdgmErs1bIjmU91GLFQgo4SE3HDIS5blMMaOfol6pDIDuod77idhX2eiX3w36dU6xu_e2F_ceoWWMan1J3kJPQ
+@derekToken = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJoeXBlIiwiZXhwIjoxNTM0NzA3NTg1LCJpYXQiOjE1MzIyODgzODUsImlzcyI6Imh5cGUiLCJqdGkiOiI1MjAwMDg5OS02MjgyLTQzNjUtODBkOS03NmVjMmYyNTlmZTYiLCJuYmYiOjE1MzIyODgzODQsInN1YiI6IjIiLCJ0eXAiOiJhY2Nlc3MifQ.h2Qoc1BpJWQ1ZjxybZo4Ez1sMV_Aul5l-RipI4TIri0RW1Uff0mBbowf3_KdIdYBBoTXWtmjfvXU9tbxsxmCXQ
 
 
 # @name authentication
@@ -7,13 +8,19 @@ POST {{url}}/users/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "rupertevanr@gmail.com",
-  "password": "password"
+  "email": "derekborges@gmail.com",
+  "password": "derekpassword"
 }
 
 ###
 
-# @name evan_create_transaction
+# @name evan_get
+GET {{url}}/transactions HTTP/1.1
+Authorization: Bearer {{evanToken}}
+
+###
+
+# @name evan_post
 POST {{url}}/transactions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{evanToken}}
@@ -32,4 +39,68 @@ Authorization: Bearer {{evanToken}}
   }
 }
 
+###
 
+# @name evan_put
+PUT {{url}}/transactions/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{evanToken}}
+
+{
+  "transaction": {
+    "vendor": "UpdatedVendor"
+  }
+}
+
+###
+
+# @name evan_delete
+DELETE {{url}}/transactions/1 HTTP/1.1
+Authorization: Bearer {{evanToken}}
+
+###
+
+# @name derek_get
+GET {{url}}/transactions/1 HTTP/1.1
+Authorization: Bearer {{derekToken}}
+
+###
+
+# @name derek_post
+POST {{url}}/transactions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{derekToken}}
+
+{
+  "transaction": {
+    "vendor": "VendorC",
+    "purchase_date": "2018-06-20",
+    "purchase_price": 100.0,
+    "sell_date": "2018-07-12",
+    "sell_price": 100.0,
+    "payout_amount": 95.0,
+    "broker": "BrokerC",
+    "status": "SOLD",
+    "item_id": 2
+  }
+}
+
+###
+
+# @name derek_put
+PUT {{url}}/transactions/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{derekToken}}
+
+{
+  "transaction": {
+    "vendor": "TestVendor",
+    "broker": "TestVendor"
+  }
+}
+
+###
+
+# @name derek_delete
+DELETE {{url}}/transactions/1 HTTP/1.1
+Authorization: Bearer {{derekToken}}

@@ -17,4 +17,10 @@ defmodule HypeWeb.FallbackController do
     |> put_status(:not_found)
     |> render(HypeWeb.ErrorView, :"404")
   end
+
+  def call(conn, nil) do
+    conn
+    |> put_status(:forbidden)
+    |> render(HypeWeb.ErrorView, :"403")
+  end
 end
