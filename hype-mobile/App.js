@@ -1,18 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Dashboard from './dashboard/dashboard';
+import Dashboard from './app/dashboard';
 import Inventory from './inventory/inventory';
-import Transactions from './transactions/transactions';
-import Account from './account/account';
+import Transactions from './app/transaction/transactions';
+import Account from './app/account';
 import { createBottomTabNavigator } from 'react-navigation';
 import {Icon} from 'react-native-elements';
-import Login from './login/login'
-import Analytics from './analytics/analytics'
+import Login from './app/login/login'
+import Analytics from './app/analytics'
 
 const FullApp = createBottomTabNavigator(
   {
     Dashboard: Dashboard,
-    Inventory: Inventory,
+    // Inventory: Inventory,
     Transactions: Transactions,
     Analytics: Analytics,
     Account: Account

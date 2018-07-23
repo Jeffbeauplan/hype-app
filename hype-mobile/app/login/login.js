@@ -11,7 +11,7 @@ export default class Login extends React.Component {
         <View style={styles.logoContainer}>
         <Image 
           style={styles.logo}
-          source = {require("../images/logo.png")}
+          source = {require("../../images/logo.png")}
           /> 
           <Text style = {styles.name} >The Hype App </Text>
           <Text style={styles.title}>An app made for tracking and analyzing seller performace</Text>
