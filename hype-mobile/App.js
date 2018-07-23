@@ -6,12 +6,15 @@ import Transactions from './transactions/transactions';
 import Account from './account/account';
 import { createBottomTabNavigator } from 'react-navigation';
 import {Icon} from 'react-native-elements';
+import Login from './login/login'
+import Analytics from './analytics/analytics'
 
-export default createBottomTabNavigator(
+const FullApp = createBottomTabNavigator(
   {
     Dashboard: Dashboard,
     Inventory: Inventory,
     Transactions: Transactions,
+    Analytics: Analytics,
     Account: Account
   },
   {
@@ -21,6 +24,8 @@ export default createBottomTabNavigator(
         let iconName;
         if (routeName === 'Dashboard') {
           iconName = 'av-timer';
+        } else if (routeName === 'Analytics') {
+          iconName = 'trending-up';
         } else if (routeName === 'Account') {
           iconName = 'person-outline';
         } else if (routeName === 'Inventory') {
@@ -40,7 +45,32 @@ export default createBottomTabNavigator(
     }
   }
 );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props)
 
+    this.handler = this.handler.bind(this);
+
+    this.state = {
+        signedIn: false
+    };
+  }
+
+  handler() {
+    this.setState({
+        signedIn: true
+    });
+  }
+  
+  render () {
+    if(!this.state.signedIn){
+      return( <Login handler = {this.handler} /> );
+    }
+    else {
+      return( <FullApp/> );
+    }
+  }
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1
