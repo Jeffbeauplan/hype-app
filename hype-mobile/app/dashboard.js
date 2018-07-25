@@ -1,16 +1,16 @@
 import React from 'react';
-import { Image, Button, StyleSheet, Text, View } from 'react-native';
+import { Image, Button, StyleSheet, Text, View, StatusBar } from 'react-native';
+import {LinearGradient} from 'expo'
 
 export default class Dashboard extends React.Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      <LinearGradient  colors={['#9b59b6','#e74c3c']} style={styles.container}>
+        <StatusBar barStyle="light-content"/>
         <Text style={{color: 'white'}}>Dashboard</Text>
-        <Button title="Go to account"
-            onPress={() => this.props.navigation.navigate('Account')}
-        />
-      </View>
+        
+      </LinearGradient >
     );
   }
 }
@@ -18,8 +18,11 @@ export default class Dashboard extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF',
+        //backgroundColor: 'transparent',
         alignItems: 'center',
         paddingTop: 20
+    },
+    backgroundImage: {
+      flex: 1,
     },
 });

@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: 'black',
       alignItems: 'center',
-      paddingTop: 20
+      paddingTop: 30
   },
   button: {
     position: 'absolute',
