@@ -11,7 +11,10 @@ defmodule HypeWeb.ErrorView do
   # the template name. For example, "404.json" becomes
   # "Not Found".
   def template_not_found(template, _assigns) do
-    %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
+    %{
+      ok: false,
+      errors: %{detail: Phoenix.Controller.status_message_from_template(template)}
+    }
   end
 
   def render("403.json", _assigns) do
@@ -19,6 +22,15 @@ defmodule HypeWeb.ErrorView do
       ok: false,
       errors: %{
         detail: "Forbidden"
+      }
+    }
+  end
+
+  def render("401.json", _assigns) do
+    %{
+      ok: false,
+      errors: %{
+        detail: "Invalid Credentials"
       }
     }
   end

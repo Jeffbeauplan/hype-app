@@ -17,9 +17,6 @@ defmodule HypeWeb.UserController do
   def authenticate(conn, %{"email" => email, "password" => password}) do
     with {:ok, token, _claims} <- Auth.authenticate_user(email, password) do
       render(conn, "token.json", token: token)
-    else
-      _ ->
-        render(conn, "token_error.json")
     end
   end
 
