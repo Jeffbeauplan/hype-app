@@ -5,6 +5,7 @@ defmodule HypeWeb.UserView do
 
   def render("show.json", %{user: user}) do
     %{
+      ok: true,
       data: render_one(user, UserView, "user.json")
     }
   end
