@@ -1,16 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {LinearGradient} from 'expo'
 
 export default class Account extends React.Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      <LinearGradient colors={['#e67e22','#d35400']} style={styles.container}>
         <Text>Account</Text>
         <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Login')}>
              <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
-      </View>
+      </LinearGradient>
     );
   }
 }
