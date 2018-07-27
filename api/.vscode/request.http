@@ -1,5 +1,5 @@
 @url = http://localhost:4000/api
-@evanToken = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJoeXBlIiwiZXhwIjoxNTM0ODEyNTQyLCJpYXQiOjE1MzIzOTMzNDIsImlzcyI6Imh5cGUiLCJqdGkiOiIyN2IyY2UzMS02ZTExLTQ4M2EtYjEzYi00Zjc5ZTM1ZDIwYmMiLCJuYmYiOjE1MzIzOTMzNDEsInN1YiI6IjEiLCJ0eXAiOiJhY2Nlc3MifQ.5FoVx9LkZHasmJzcCIBkH6H4lJYD719nVzoFuq3BN4imEj7GBQsuBb_zSjetb63U_KyJ7NziBA-lVH_O8HqccA
+@evanToken = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJoeXBlIiwiZXhwIjoxNTM1MDY5MDcyLCJpYXQiOjE1MzI2NDk4NzIsImlzcyI6Imh5cGUiLCJqdGkiOiI5MDUwZGVkMy01ZTZkLTQ4YjYtOTQ0YS03ZDg2M2VjODg2ZWUiLCJuYmYiOjE1MzI2NDk4NzEsInN1YiI6IjYiLCJ0eXAiOiJhY2Nlc3MifQ.9-en6dv2v2TDwXyIhK5j6vHSdpPdZv6bfTDIFBwSKJ1g8NWOS5zQ-A-i9sM9USidGrSWPjO75ANRrIMY1ZaQvQ
 @derekToken = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJoeXBlIiwiZXhwIjoxNTM0NzA3NTg1LCJpYXQiOjE1MzIyODgzODUsImlzcyI6Imh5cGUiLCJqdGkiOiI1MjAwMDg5OS02MjgyLTQzNjUtODBkOS03NmVjMmYyNTlmZTYiLCJuYmYiOjE1MzIyODgzODQsInN1YiI6IjIiLCJ0eXAiOiJhY2Nlc3MifQ.h2Qoc1BpJWQ1ZjxybZo4Ez1sMV_Aul5l-RipI4TIri0RW1Uff0mBbowf3_KdIdYBBoTXWtmjfvXU9tbxsxmCXQ
 
 
@@ -8,14 +8,14 @@ POST {{url}}/users/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "derekborges@gmail.com",
-  "password": "derekpassword"
+  "email": "evanrupert@gmail.com",
+  "password": "evanpassword"
 }
 
 ###
 
 # @name evan_get
-GET {{url}}/transactions HTTP/1.1
+GET {{url}}/users HTTP/1.1
 Authorization: Bearer {{evanToken}}
 
 ###

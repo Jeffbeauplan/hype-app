@@ -36,7 +36,7 @@ defmodule Hype.Mixfile do
       {:decimal, "~> 1.0"},
       {:guardian, "~> 1.1"},
       {:comeonin, "~> 4.0"},
-      {:bcrypt_elixir, "~> 0.12"}
+      {:pbkdf2_elixir, "~> 0.12"}
     ]
   end
 

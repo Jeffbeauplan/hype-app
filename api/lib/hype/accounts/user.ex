@@ -2,7 +2,7 @@ defmodule Hype.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Comeonin.Bcrypt
+  alias Comeonin.Pbkdf2, as: Comeonin
 
   schema "users" do
     field :email, :string
@@ -22,7 +22,7 @@ defmodule Hype.Accounts.User do
   end
 
   defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    change(changeset, password: Bcrypt.hashpwsalt(password))
+    change(changeset, password: Comeonin.hashpwsalt(password))
   end
 
   defp put_password_hash(changeset), do: changeset
